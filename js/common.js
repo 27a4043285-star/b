@@ -84,9 +84,7 @@ function loadFooter(rootPath) {
                     <a href="${FACEBOOK_URL}" target="_blank" rel="noopener noreferrer" title="Facebook">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="${SCHOOL_WEBSITE}" target="_blank" rel="noopener noreferrer" title="Zalo">
-                        <span class="zalo-text">Zalo</span>
-                    </a>
+                    
                     <a href="${YOUTUBE_URL}" target="_blank" rel="noopener noreferrer" title="Youtube">
                         <i class="fab fa-youtube"></i>
                     </a>

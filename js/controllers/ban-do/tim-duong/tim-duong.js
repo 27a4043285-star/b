@@ -19,24 +19,39 @@ const instructionBox = document.getElementById('instructionText');
 let lastTurnSoundSegment = -1;
 
 function playTurnAudio(turnText) {
+    if (!turnText) return null;
+
+    let text = turnText.toLowerCase().trim();
+
+    // ==========================================
+    // 🚀 ĐOẠN XỬ LÝ CHỐNG LẶP (LÀM MƯỢT ÂM THANH)
+    // ==========================================
+    // Nếu câu lệnh hiện tại giống hệt câu vừa đọc trước đó 
+    // (Đặc biệt là "đi thẳng" nối tiếp nhau) -> Bỏ qua, không đọc lại nữa.
+    if (text === lastTurnSound) {
+        return null; 
+    }
+    
+    // Nếu là câu mới -> Lưu lại để lần sau kiểm tra
+    lastTurnSound = text; 
+    // ==========================================
 
     let file = "";
 
-    if (turnText === "Rẽ trái") {
+    if (text.includes("rẽ trái")) {
         file = "../../assets/media/pages/ban-do/tim-duong/re-trai.mp3";
     }
-    else if (turnText === "Rẽ phải") {
+    else if (text.includes("rẽ phải")) {
         file = "../../assets/media/pages/ban-do/tim-duong/re-phai.mp3";
     }
-    else if (turnText === "Đi thẳng") {
+    else if (text.includes("đi thẳng")) {
         file = "../../assets/media/pages/ban-do/tim-duong/di-thang.mp3";
     }
 
     if (!file) return null;
 
     const audio = new Audio(file);
-    audio.play().catch(() => { });
-    return audio; // 🔥 QUAN TRỌNG
+    audio.play().catch(err => console.warn("Không thể phát âm thanh:", err));
 }
 function playArrivalAudio(placeName) {
 
