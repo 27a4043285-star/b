@@ -1,0 +1,29 @@
+
+.contact-section .container {
+    pointer-events: none !important; /* Cho phép chuột xuyên qua lớp container */
+}
+
+.contact-box {
+    pointer-events: auto !important; /* Giữ cho khung trắng vẫn bấm được bình thường */
+}
+.btn-quay-ve {
+    background-color: #003478;
+    color: white !important;
+    text-decoration: none;
+    padding: 6px 18px; /* Giảm padding một chút cho cân đối */
+    border-radius: 50px;
+    font-size: 10px; /* Chỉnh size chữ nhỏ lại cho tinh tế */
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap; /* Giữ chữ trên nút không bị xuống dòng */
+    display: inline-block;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    flex-shrink: 0; /* Ép nút không bị co lại khi màn hình hẹp */
+}
+
+.btn-quay-ve:hover {
+    background-color: #f39c12;
+    color: #003478 !important;
+    border: 1px solid #003478;
+}

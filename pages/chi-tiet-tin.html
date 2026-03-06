@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tin tức - HVNH</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .news-detail-box { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-top: 20px; }
+        .news-title { color: #003478; font-size: 28px; line-height: 1.3; margin-bottom: 15px; }
+        .news-meta { color: #888; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 25px; }
+        .news-body p { line-height: 1.8; font-size: 16px; margin-bottom: 20px; color: #333; }
+        .news-body figure { text-align: center; margin: 30px 0; }
+        .news-body img {
+            max-width: 600px;     /* Giới hạn chiều ngang tối đa là 600px */
+            width: 100%;          /* Nếu màn hình nhỏ hơn 600px thì tự co lại */
+            height: auto;         /* Giữ đúng tỉ lệ ảnh, không bị méo */
+            display: block;       /* Bắt buộc ảnh nằm riêng một hàng */
+            margin: 20px auto;    /* Căn giữa ảnh và tạo khoảng cách trên dưới */
+            border-radius: 8px;   /* Bo góc cho đẹp */
+        }
+        .news-body figcaption { font-style: italic; color: #666; margin-top: 10px; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="main-content-wrapper" style="background: #f4f4f4; padding: 30px 0; min-height: 80vh;">
+        <div class="container news-detail-box">
+            <h1 id="view-title" class="news-title"></h1>
+            <div id="view-meta" class="news-meta"></div>
+            <div id="view-content" class="news-body"></div>
+            
+            <div style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px;">
+                <a href="tin-tuc.html" style="color: #003478; text-decoration: none; font-weight: bold;">
+                    <i class="fas fa-arrow-left"></i> QUAY LẠI BẢN TIN
+                </a>
+            </div>
+        </div>
+    </div>
+
+   
+
+
+    <script src="../js/common.js"></script>
+    <script src="../js/controllers/tin-tuc.js"></script>
+    <script>
+        loadHeader('..', 'tin-tuc');
+        loadFooter('..');
+
+        // Logic tự động đổ dữ liệu
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        const baiViet = danhSachTinTuc.find(item => item.id === id);
+
+        if (baiViet) {
+            document.getElementById('view-title').innerText = baiViet.tieuDe;
+            document.getElementById('view-meta').innerHTML = `<i class="far fa-clock"></i> ${baiViet.ngay} | <i class="far fa-eye"></i> ${baiViet.luotXem} lượt xem`;
+            
+            const contentDiv = document.getElementById('view-content');
+            baiViet.blocks.forEach(block => {
+                if (block.type === 'text') {
+                    contentDiv.innerHTML += `<div class="news-paragraph">${block.content}</div>`;
+                } else if (block.type === 'image') {
+                    contentDiv.innerHTML += `
+                        <figure>
+                            <img src="${block.url}">
+                            <figcaption>${block.caption}</figcaption>
+                        </figure>`;
+                }
+            });
+            document.title = baiViet.tieuDe;
+        }
+    </script>
+
+    // Lấy ra 5 bài viết khác bài đang xem để làm tin liên quan
+const relatedNews = danhSachTinTuc.filter(item => item.id !== id).slice(0, 5);
+const sidebarDiv = document.getElementById('related-news-list');
+
+relatedNews.forEach(item => {
+    sidebarDiv.innerHTML += `
+        <div class="sidebar-item">
+            <a href="chi-tiet-tin.html?id=${item.id}">
+                ${item.tieuDe}
+            </a>
+            <div style="font-size: 12px; color: #888; margin-top: 5px;">${item.ngay}</div>
+        </div>
+    `;
+});
+</body>
+</html>
