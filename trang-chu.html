@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ - Học viện Ngân hàng</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages/trang-chu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="main-content-wrapper">
+
+        <div class="hero-slider">
+            <div class="slider-wrapper" id="sliderWrapper">
+                <div class="slide"><img src="assets/images/pages/trang-chu/anh1.jpg" alt="HVNH 1"></div>
+                <div class="slide"><img src="assets/images/pages/trang-chu/anh2.jpg" alt="HVNH 2"></div>
+                <div class="slide"><img src="assets/images/pages/trang-chu/anh3.jpg" alt="HVNH 3"></div>
+                <div class="slide"><img src="assets/images/pages/trang-chu/anh4.jpg" alt="HVNH 3"></div>
+                <div class="slide"><img src="assets/images/pages/trang-chu/anh5.jpg" alt="HVNH 3"></div>
+                <div class="slide"><img src="assets/images/pages/trang-chu/anh6.jpg" alt="HVNH 3"></div>
+                <div class="slide"><img src="assets/images/pages/trang-chu/anh7.jpg" alt="HVNH 3"></div>
+                <div class="slide"><img src="assets/images/pages/trang-chu/anh8.jpg" alt="HVNH 3"></div>
+                <div class="slide"><img src="assets/images/pages/trang-chu/anh9.jpg" alt="HVNH 3"></div>
+                <div class="slide"><img src="assets/images/pages/trang-chu/anh10.jpg" alt="HVNH 3"></div>
+
+            </div>
+            <button class="prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="next-btn" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+
+        <div class="container">
+            <section class="welcome-section">
+                <h2 class="welcome-title">WELCOME TO <span class="highlight">BANKING ACADEMY</span></h2>
+                <p class="intro-text">
+                    Học viện Ngân hàng là trường đại học công lập đa ngành trực thuộc Ngân hàng Nhà nước Việt Nam...
+                </p>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="icon-box"><i class="fas fa-history"></i></div>
+                        <div class="text-box">
+                            <h3>LỊCH SỬ</h3>
+                            <p>Thành lập năm 1961...</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon-box"><i class="fas fa-globe"></i></div>
+                        <div class="text-box">
+                            <h3>SỨ MỆNH</h3>
+                            <p>Đào tạo nguồn nhân lực chất lượng cao...</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <a href="pages/ban-do/ban-do.html" class="map-btn">KHÁM PHÁ BẢN ĐỒ SỐ <i
+                            class="fas fa-arrow-right"></i></a>
+                </div>
+            </section>
+        </div>
+        <div style="height: 20px;"></div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script>
+        loadHeader('.', 'trang-chu'); // '.' là thư mục hiện tại
+        loadFooter('.');
+    </script>
+    <script src="js/controllers/trang-chu.js"></script>
+</body>
+
+</html>

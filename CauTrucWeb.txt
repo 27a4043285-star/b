@@ -1,0 +1,96 @@
+WEB_HVNH/
+│
+├── backend/                        # [SERVER] XỬ LÝ DỮ LIỆU
+│   ├── node_modules/               
+│   ├── .env                        # File cấu hình (User/Pass SQL)
+│   ├── dbConfig.js                 # Kết nối Database MSSQL
+│   ├── dbOperations.js             # Các hàm truy vấn (Query)
+│   └── server.js                   # API Endpoints
+│
+└── frontend/                       # [CLIENT] GIAO DIỆN
+    │
+    ├── index.html                  # TRANG INTRO (File chạy chính)
+    ├── trang-chu.html              # TRANG CHỦ 
+    │
+    ├── pages/                      # [HTML] CÁC TRANG CON
+    │   │
+    │   ├── ban-do/                 # 1. MODULE BẢN ĐỒ
+    │   │   ├── ban-do.html      # -> Giao diện tìm đường (Canvas)
+    │   │   ├── tim-duong.html
+    │   │   └── toa-nha.html        # -> Giao diện xem tòa nhà (Popup)
+    │   │
+    │   ├── tin-tuc.html            # 2. Trang Tin tức
+    │   ├── gioi-thieu.html         # 3. Trang Giới thiệu
+    │   ├── lien-he.html            # 4. Trang Liên hệ
+    │   └── huong-dan.html          # 5. Trang Hướng dẫn
+    │
+    ├── css/                        # [CSS] GIAO DIỆN (Đồng bộ tên với HTML)
+    │   ├── style.css               # CSS Chung (Reset, Header, Footer)
+    │   │
+    │   └── pages/                  # CSS Riêng từng trang
+    │       ├── ban-do/             
+    │       │   ├── ban-do.css      # Style module tìm đường
+    │       │   ├── tim-duong.css   
+    │       │   ├── toa-nha.css     # Style module tòa nhà
+    │       │   └── chung.css       # [Mới] CSS dùng chung cho cả 2 map (nếu cần)
+    │       │
+    │       ├── index.css           # Style riêng cho index.html
+    │       ├── trang-chu.css       
+    │       ├── tin-tuc.css         
+    │       ├── gioi-thieu.css      
+    │       ├── lien-he.css         
+    │       └── huong-dan.css       
+    │
+    ├── js/                         # [JS] MÃ NGUỒN LOGIC
+    │   ├── common.js               # Logic chung (Menu, Scroll)
+    │   │
+    │   ├── services/               # [API] (Dùng chung toàn web)
+    │   │   └── api.js              # Gọi Server lấy dữ liệu
+    │   │
+    │   └── controllers/            # [ĐIỀU KHIỂN LOGIC]
+    │       │
+    │       ├── ban-do/             # [BẢN ĐỒ - ĐÃ ĐÓNG GÓI]
+    │       │   │
+    │       │   ├── tim-duong/      # -> Folder chứa TRỌN BỘ logic tìm đường
+    │       │   │   ├── tim-duong.js    # Logic chính (xử lý sự kiện click)
+    │       │   │   ├── dijkstra.js     # Thuật toán tính toán đường đi
+    │       │   │   └── ve-map.js       # Hàm vẽ đường lên Canvas
+    │       │   ├── ban-do.js
+    │       │   │
+    │       │   └── toa-nha/        # -> Folder chứa logic xem tòa nhà
+    │       │       └── toa-nha.js      # Logic hiện popup/slide ảnh
+    │       │
+    │       ├── index.js            # Logic INTRO 
+    │       ├── trang-chu.js        # Logic trang chủ 
+    │       ├── tin-tuc.js          # Logic load tin tức
+    │       ├── gioi-thieu.js       # Logic chạy slide lịch sử
+    │       ├── lien-he.js          # Logic gửi form liên hệ
+    │       └── huong-dan.js        # Logic tìm kiếm hướng dẫn
+    │
+    └── assets/                     # [TÀI NGUYÊN] (Chia theo trang)
+        │
+        ├── images/                 # --- KHO ẢNH ---
+        │   ├── common/             # Logo, icon hệ thống
+        │   │
+        │   └── pages/              # [ẢNH CHIA THEO TRANG]
+        │       ├── ban-do/         
+        │       │   ├── chung/      # Ảnh nền map (Dùng chung cho tim-duong & toa-nha)
+        │       │   ├── tim-duong/  # Icon Marker A/B, Mũi tên, Icon GPS
+        │       │   └── toa-nha/    # Ảnh chụp thực tế các tòa nhà
+        │       │
+        │       ├── trang-chu/      # Ảnh Banner lớn, Background Intro
+        │       ├── tin-tuc/        # Ảnh bài viết
+        │       ├── gioi-thieu/     # Ảnh tư liệu lịch sử
+        │       ├── lien-he/        # QR Code, Icon MXH
+        │       └── huong-dan/      # Ảnh các bước hướng dẫn (Step 1, Step 2)
+        │
+        └── media/                  # --- KHO MEDIA (AUDIO/VIDEO) ---
+            └── pages/              # [MEDIA CHIA THEO TRANG]
+                ├── ban-do/         
+                │   ├── tim-duong/  # Âm thanh hiệu ứng (Ping!)
+                │   └── toa-nha/    # Video giới thiệu tòa nhà
+                │
+                ├── trang-chu/      # Video Intro giới thiệu trường
+                ├── gioi-thieu/     # Audio thuyết minh lịch sử
+                ├── lien-he/        # Audio báo gửi thành công
+                └── huong-dan/      # Video quay màn hình hướng dẫn

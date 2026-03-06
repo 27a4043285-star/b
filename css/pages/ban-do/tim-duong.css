@@ -1,0 +1,174 @@
+/* =========================================
+   FILE: css/tim-duong.css
+   MÔ TẢ: Ép sát nội dung lên trên, tối ưu cho màn hình laptop
+   ========================================= */
+
+.container {
+    width: 100%;
+    max-width: none;
+    padding: 0 15px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* 1. KÉO SÁT LÊN TRÊN CÙNG */
+.main-content-wrapper {
+    text-align: center;
+    padding-top: 5px !important;    /* Cách menu đúng 5px */
+    padding-bottom: 20px;
+}
+
+.page-title {
+    margin-top: 0 !important;
+    margin-bottom: 10px !important; /* Khoảng cách với ô chọn rất nhỏ */
+    font-size: 22px;                /* Chữ tiêu đề vừa phải */
+    color: #003478;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* 2. KHU VỰC CHỌN ĐIỂM (Thu gọn lại) */
+.controls {
+    margin-bottom: 15px; /* Cách video 15px */
+    background: white;
+    padding: 10px;       /* Padding mỏng hơn */
+    border-radius: 8px;
+    display: inline-block;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+select, button {
+    padding: 6px 12px;   /* Ô chọn gọn gàng */
+    margin: 2px 5px;
+    font-size: 15px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background: #28a745; color: white; border: none; cursor: pointer; font-weight: bold;
+}
+button:hover { background: #218838; }
+
+/* 3. KHUNG VIDEO (BỐ CỤC NGANG) */
+.video-container {
+    max-width: 1000px;
+    margin: 0 auto 15px auto; /* Giảm margin dưới */
+    background: #fff;
+    padding: 15px;            /* Giảm viền trắng xung quanh video */
+    border-radius: 8px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.video-title {
+    color: #003478;
+    margin: 0 0 10px;         /* Sát video hơn */
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.video-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px; 
+}
+
+/* 4. CHỈNH CHIỀU CAO VIDEO (QUAN TRỌNG) */
+.video-wrapper {
+    flex: 1;
+    position: relative;
+    
+    /* Giảm xuống 400px để vừa màn hình laptop hơn */
+    height: 400px; 
+    
+    background: #000;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.guide-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    pointer-events: none;
+}
+
+/* 5. CỘT TỐC ĐỘ BÊN PHẢI */
+.speed-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+    width: 80px;
+    flex-shrink: 0;
+}
+
+.speed-controls span {
+    font-size: 13px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 3px;
+    text-align: center;
+}
+
+.speed-controls button {
+    padding: 6px 0;
+    margin: 0;
+    width: 100%;
+    font-size: 13px;
+    color: #333;
+    background: #fff;
+    transition: all 0.2s;
+}
+.speed-controls button:hover { background: #f39c12; color: white; border-color: #f39c12; }
+.speed-controls button.active-speed { background: #003478; color: white; border-color: #003478; }
+
+/* 6. BẢN ĐỒ */
+.map-box {
+    position: relative; display: inline-block; border: 2px solid #333; width: 100%;
+}
+.map-box img { width: 100%; display: block; }
+.map-box canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+
+/* Mobile */
+@media (max-width: 768px) {
+    .video-layout { flex-direction: column; }
+    .video-wrapper { height: 250px; }
+    .speed-controls { flex-direction: row; width: 100%; justify-content: center; margin-top: 10px; }
+    .speed-controls button { width: auto; padding: 6px 10px; flex: 1; }
+    .speed-controls span { display: none; }
+}
+/* Thêm vào cuối file css/tim-duong.css */
+
+/* Khung chứa video cần đặt relative để ô chữ nằm đè lên được */
+.video-box {
+    position: relative; 
+}
+
+/* Ô hiển thị hướng dẫn */
+.instruction-overlay {
+    position: absolute;
+    bottom: 20px;          /* Cách mép dưới 20px */
+    left: 50%;             /* Căn giữa theo chiều ngang */
+    transform: translateX(-50%);
+    
+    background-color: rgba(0, 0, 0, 0.7); /* Màu đen mờ */
+    color: #fff;           /* Chữ trắng */
+    padding: 10px 25px;    /* Khoảng cách lề */
+    border-radius: 30px;   /* Bo tròn góc */
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 10;           /* Đảm bảo nằm trên video */
+    pointer-events: none;  /* Bấm xuyên qua được */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    transition: all 0.3s ease; /* Hiệu ứng đổi chữ mượt */
+}
