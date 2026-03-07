@@ -4,26 +4,64 @@
    (Header/Footer đã có trong style.css)
    ========================================= */
 
-/* --- SLIDER --- */
+/* =========================================
+   SLIDER HOÀN THIỆN (KHÔNG BỊ CẮT ẢNH)
+   ========================================= */
 .hero-slider {
     position: relative;
-    width: 100%;
-    height: 500px;
+    /* Chiều rộng bằng với khung nội dung trang web (thường là 1200px) */
+    width: 100%; 
+    max-width: 1200px; 
+    margin: 20px auto; /* Căn giữa và cách phía trên 20px */
     overflow: hidden;
+    
+    /* Trang trí thêm cho đẹp mắt */
+    border-radius: 10px; 
+    box-shadow: 0 5px 20px rgba(0, 52, 120, 0.15);
+    background-color: #f8f9fa; /* Màu nền phụ đề phòng ảnh load chậm */
 }
 
-.slider-wrapper { display: flex; height: 100%; transition: transform 0.6s ease-in-out; }
-.slide { min-width: 100%; height: 100%; }
-.slide img { width: 100%; height: 100%; object-fit: cover; }
+.slider-wrapper { 
+    display: flex; 
+    transition: transform 0.6s ease-in-out; 
+    align-items: center; /* Căn giữa ảnh nếu các ảnh có chiều cao khác nhau */
+}
 
+.slide { 
+    min-width: 100%; 
+}
+
+.slide img { 
+    width: 100%; 
+    height: auto; /* QUAN TRỌNG NHẤT: Chiều cao tự động bóp theo tỷ lệ gốc của ảnh */
+    display: block; 
+    object-fit: contain; /* Đảm bảo hiển thị trọn vẹn 100% bức ảnh, không bao giờ bị xén mép */
+}
+
+/* --- NÚT CHUYỂN SLIDE --- */
 .prev-btn, .next-btn {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    background: rgba(0,0,0,0.3); color: white; border: none;
-    padding: 15px 20px; cursor: pointer; font-size: 24px; transition: 0.3s;
+    position: absolute; 
+    top: 50%; 
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.3); /* Nền mờ để nhìn xuyên thấu */
+    color: white; 
+    border: none;
+    padding: 12px 18px; 
+    cursor: pointer; 
+    font-size: 22px; 
+    transition: all 0.3s ease;
+    z-index: 10; /* Luôn nổi lên trên cùng */
+    border-radius: 6px;
 }
-.next-btn { right: 0; }
-.prev-btn:hover, .next-btn:hover { background: rgba(0,33,71,0.8); }
 
+.prev-btn { left: 15px; }
+.next-btn { right: 15px; }
+
+/* Hiệu ứng khi di chuột vào nút */
+.prev-btn:hover, .next-btn:hover { 
+    background: #003478; /* Xanh đậm của Học viện Ngân hàng */
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
 /* --- WELCOME SECTION --- */
 .welcome-section { padding: 50px 0; }
 .welcome-title {
@@ -52,4 +90,443 @@
 @media (max-width: 768px) {
     .hero-slider { height: 250px; }
     .info-grid { grid-template-columns: 1fr; }
+}
+/* =========================================
+   MAP CTA BANNER (Hành động gọi Bản đồ)
+========================================= */
+.map-cta-section {
+    position: relative;
+    background: url('../../assets/images/pages/trang-chu/anh3.jpg') center/cover fixed; /* Hiệu ứng fixed xịn xò */
+    padding: 80px 20px;
+    text-align: center;
+    color: white;
+    margin: 60px 0;
+}
+
+.cta-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 52, 120, 0.85); /* Phủ xanh đậm của HVNH */
+    z-index: 1;
+}
+
+.cta-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-content h2 { font-size: 32px; font-weight: 800; margin-bottom: 20px; color: #fff;}
+.cta-content p { font-size: 17px; line-height: 1.6; color: #d1e0f3; margin-bottom: 40px; }
+
+.cta-btn {
+    display: inline-block;
+    background: #f39c12; /* Vàng cam HVNH */
+    color: #fff;
+    padding: 16px 40px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 10px 20px rgba(243, 156, 18, 0.3);
+}
+
+.cta-btn:hover {
+    background: #fff;
+    color: #003478;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
+}
+
+/* =========================================
+   TIN TỨC NỔI BẬT (News Grid)
+========================================= */
+.news-section { margin-bottom: 80px; }
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.news-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+    transition: 0.3s;
+    border: 1px solid #eee;
+}
+
+.news-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0, 52, 120, 0.15); }
+
+.news-img { width: 100%; height: 200px; overflow: hidden; }
+.news-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.news-card:hover .news-img img { transform: scale(1.1); }
+
+.news-content { padding: 25px; }
+.news-date { font-size: 13px; color: #f39c12; font-weight: 600; display: block; margin-bottom: 10px; }
+.news-content h3 { margin: 0 0 15px 0; font-size: 18px; line-height: 1.4; }
+.news-content h3 a { color: #003478; text-decoration: none; transition: 0.2s; }
+.news-content h3 a:hover { color: #f39c12; }
+.news-content p { color: #666; font-size: 14.5px; line-height: 1.6; margin: 0; }
+/* =========================================
+   TIỆN ÍCH SINH VIÊN (Quick Links)
+========================================= */
+.utilities-section {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.utilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.utility-card {
+    background: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 15px;
+    padding: 30px 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hiệu ứng trượt màu ở viền dưới */
+.utility-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: #f39c12;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.utility-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 52, 120, 0.1);
+    border-color: transparent;
+}
+
+.utility-card:hover::after {
+    transform: scaleX(1);
+}
+
+.utility-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px auto;
+    background: rgba(0, 52, 120, 0.05);
+    color: #003478;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    transition: 0.3s;
+}
+
+.utility-card:hover .utility-icon {
+    background: #003478;
+    color: #fff;
+}
+
+.utility-card h3 {
+    font-size: 18px;
+    color: #003478;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.utility-card p {
+    font-size: 14.5px;
+    color: #666;
+    margin: 0;
+}
+
+/* Nổi bật riêng thẻ Cổng thông tin */
+.primary-card {
+    background: linear-gradient(135deg, #003478, #001e4a);
+    color: white;
+}
+.primary-card h3, .primary-card p {
+    color: white;
+}
+.primary-card .utility-icon {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+.primary-card:hover .utility-icon {
+    background: #f39c12;
+    color: #fff;
+}
+/* =========================================
+   KHỐI SỨ MỆNH (MISSION BOX)
+========================================= */
+.mission-box {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #003478, #001e4a);
+    border-radius: 15px;
+    padding: 30px 40px;
+    margin: 40px auto 60px;
+    max-width: 900px;
+    box-shadow: 0 10px 30px rgba(0, 52, 120, 0.2);
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+.mission-box:hover {
+    transform: translateY(-5px);
+}
+
+.mission-icon {
+    font-size: 50px;
+    color: #f39c12;
+    margin-right: 30px;
+    flex-shrink: 0;
+}
+
+.mission-content h3 {
+    color: #f39c12;
+    font-size: 20px;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.mission-content p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #e0eaf5;
+    text-align: justify;
+}
+
+/* =========================================
+   KHỐI LỊCH SỬ (TIMELINE)
+========================================= */
+.history-section {
+    max-width: 900px;
+    margin: 0 auto 50px;
+}
+
+.sub-heading {
+    color: #003478;
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.timeline {
+    position: relative;
+    padding: 20px 0;
+}
+
+/* Đường kẻ dọc màu xanh */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 20px;
+    width: 4px;
+    background-color: #003478;
+    border-radius: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 60px;
+    margin-bottom: 35px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Dấu chấm mốc thời gian */
+.timeline-dot {
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    width: 24px;
+    height: 24px;
+    background-color: #f39c12;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: 0 0 0 2px #003478;
+    z-index: 2;
+    transition: 0.3s;
+}
+
+.timeline-item:hover .timeline-dot {
+    background-color: #003478;
+    box-shadow: 0 0 0 2px #f39c12;
+}
+
+.timeline-content {
+    background: #f8f9fa;
+    padding: 20px 25px;
+    border-radius: 10px;
+    border-left: 4px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+    background: #fff;
+    border-left-color: #f39c12;
+    transform: translateX(10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.timeline-year {
+    font-size: 24px;
+    font-weight: 800;
+    color: #f39c12;
+    margin-bottom: 5px;
+}
+
+.timeline-content h4 {
+    color: #003478;
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+.timeline-content p {
+    margin: 0;
+    color: #555;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+/* Reponsive cho điện thoại */
+@media (max-width: 768px) {
+    .mission-box {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    .mission-icon {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+}
+/* =========================================
+   CÁC NGÀNH ĐÀO TẠO MŨI NHỌN
+========================================= */
+.majors-grid {
+    display: grid;
+    /* Cố định luôn 3 cột bằng nhau (1fr) trên màn hình máy tính */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 35px;
+    padding: 20px 0;
+}
+
+/* =========================================
+   THÊM RESPONSIVE CHO IPAD & ĐIỆN THOẠI
+========================================= */
+/* Với màn hình nhỏ hơn (Tablet/iPad) -> Hiển thị 2 cột */
+@media (max-width: 992px) {
+    .majors-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Với màn hình điện thoại -> Hiển thị 1 cột xếp dọc */
+@media (max-width: 768px) {
+    .majors-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.major-card {
+    display: block;
+    text-decoration: none;
+    background: #ffffff;
+    border-radius: 16px; /* Bo góc tròn trịa hơn */
+    padding: 45px 30px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    
+    /* Hiệu ứng bóng đổ cực mềm và tự nhiên */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04); 
+    border: 1px solid rgba(0, 52, 120, 0.05);
+    
+    /* Hiệu ứng nảy nhẹ cubic-bezier siêu mượt khi di chuột */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+
+/* Thanh viền dưới làm điểm nhấn */
+.major-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: transparent;
+    border-radius: 0 0 16px 16px;
+    transition: all 0.4s ease;
+}
+
+/* KHI NGƯỜI DÙNG DI CHUỘT (HOVER) */
+.major-card:hover {
+    transform: translateY(-12px); /* Nhấc thẻ bay lên cao hơn */
+    box-shadow: 0 20px 40px rgba(0, 52, 120, 0.12); /* Đổ bóng màu xanh đặc trưng */
+    border-color: transparent;
+}
+
+.major-card:hover::after {
+    background: #f39c12; /* Hiện viền dưới màu cam */
+}
+
+/* KHỐI CHỨA ICON */
+.major-icon {
+    width: 85px; 
+    height: 85px;
+    line-height: 85px;
+    background: rgba(0, 52, 120, 0.04); /* Nền xanh lam cực nhạt */
+    border-radius: 50%;
+    margin: 0 auto 25px;
+    font-size: 34px;
+    color: #003478; /* Icon màu xanh của HVNH */
+    transition: all 0.4s ease;
+}
+
+.major-card:hover .major-icon {
+    background: #003478; /* Đổi nền icon thành xanh đậm */
+    color: #ffffff;      /* Đổi màu icon thành trắng */
+    transform: scale(1.1); /* Phóng to icon 1 chút */
+    box-shadow: 0 10px 25px rgba(0, 52, 120, 0.25); /* Tỏa sáng nhẹ */
+}
+
+/* PHẦN CHỮ CỦA THẺ */
+.major-card h3 {
+    font-size: 20px;
+    color: #003478;
+    margin-bottom: 15px;
+    font-weight: 800;
+    transition: color 0.3s ease;
+}
+
+.major-card p {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.major-card:hover h3 {
+    color: #f39c12; /* Chữ tiêu đề đổi sang màu Cam nhấn */
 }
